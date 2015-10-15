@@ -41,7 +41,7 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
   def valid_signature?
     Digest::MD5.hexdigest([ params['MNT_ID'], params['MNT_TRANSACTION_ID'], params['MNT_OPERATION_ID'],
       params['MNT_AMOUNT'], params['MNT_CURRENCY_CODE'], params['MNT_SUBSCRIBER_ID'], params['MNT_TEST_MODE'],
-      @gateway.options[:signature] ].join).downcase == params['MNT_SIGNATURE'].downcase
+      @gateway.options[:payanyway_signature] ].join).downcase == params['MNT_SIGNATURE'].downcase
   end
 
   def load_gateway

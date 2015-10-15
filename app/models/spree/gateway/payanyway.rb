@@ -44,10 +44,10 @@ module Spree
     end    
 
     def signature( order ) 
-      Digest::MD5.hexdigest([ options[:id], 
+      Digest::MD5.hexdigest([ options[:payanyway_shop_id], 
         order.id, format("%.2f", order.total), 
-        options[:currency_code], 
-        mode, options[:signature] ].join).downcase
+        options[:payanyway_currency_code], 
+        mode, options[:payanyway_signature] ].join).downcase
     end
 
   end
