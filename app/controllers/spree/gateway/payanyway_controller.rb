@@ -55,8 +55,10 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
       order.payments.create! do |p|
         p.payment_method = gateway
         p.amount = order.total
+        p.response_code = params['MNT_OPERATION_ID']
         p.state = 'completed'
       end
+#      order.payments.first.log_entries.create!(details: request.to_yaml)
     end
     order.update!
   end
