@@ -1,0 +1,16 @@
+---
+ru:
+  spree:
+    payanyway:
+      details_of_payment: 'Оплата заказа %{order_number}'
+      success_url: Success URL
+      result_url: Result URL
+      fail_url: Fail URL
+    payment_fail: "Не удалось провести оплату"
+    payment_success: "Оплата выполнена успешно"
+    payanyway_shop_id: "Идентификатор магазина (*)"
+    payanyway_currency_code: "ISO код валюты (*)"
+    payanyway_signature: "Код для проверки целостности данных (*)"
+    payanyway_locale: "Язык пользовательского интерфейса"
+    payanyway_payment_system: "Предварительный выбор платежной системы"
+    payanyway_payment_system_list: "Список идентификаторов платежных  систем (,)"

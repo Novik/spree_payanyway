@@ -1,0 +1,5 @@
+require 'spree_core'
+require 'spree_payanyway/engine'
+require 'spree_payanyway/version'
+require 'coffee_script'
+require 'sass/rails'

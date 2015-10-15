@@ -1,0 +1,16 @@
+---
+en:
+  spree:
+    payanyway:
+      details_of_payment: 'Payment Order %{order_number}'
+      success_url: Success URL
+      result_url: Result URL
+      fail_url: Fail URL
+    payment_fail: PAYMENT FAIL
+    payment_success: Payment Success
+    payanyway_shop_id: Shop ID
+    payanyway_currency_code: Currency code
+    payanyway_signature: Signature
+    payanyway_locale: Locale
+    payanyway_payment_system: Preffered payment system
+    payanyway_payment_system_list: List of supported payment systems

@@ -1,0 +1,16 @@
+<%= form_tag(payment_method.url, method: :post, authenticity_token: false, enforce_utf8: false) do %>
+  <%= hidden_field_tag('MNT_ID', payment_method.options[:payanyway_shop_id], id: nil) %>
+  <%= hidden_field_tag('MNT_TRANSACTION_ID', @order.id, id: nil) %>
+  <%= hidden_field_tag('MNT_CURRENCY_CODE', payment_method.options[:payanyway_currency_code], id: nil) %>
+  <%= hidden_field_tag('MNT_AMOUNT', format("%.2f", @order.total), id: nil) %>
+  <%= hidden_field_tag('MNT_TEST_MODE', payment_method.mode, id: nil) %>
+  <%= hidden_field_tag('MNT_SIGNATURE', payment_method.signature( @order ), id: nil) %>
+  <%= hidden_field_tag('MNT_SUCCESS_URL', gateway_payanyway_success_url( order_id: @order.id ), id: nil) %>
+  <%= hidden_field_tag('MNT_FAIL_URL', gateway_payanyway_fail_url( order_id: @order.id ), id: nil) %>
+  <%= hidden_field_tag('MNT_RETURN_URL', checkout_state_url('payment'), id: nil) %>  
+  <%= hidden_field_tag('MNT_DESCRIPTION', Spree.t('payanyway.details_of_payment', order_number: @order.number), id: nil) %>    
+  <%= hidden_field_tag('moneta.locale', payment_method.options[:payanyway_locale], id: nil) if payment_method.options[:payanyway_locale].present? %>
+  <%= hidden_field_tag('paymentSystem.unitId', payment_method.options[:payanyway_payment_system], id: nil) if payment_method.options[:payanyway_payment_system].present? %>
+  <%= hidden_field_tag('paymentSystem.limitIds', payment_method.options[:payanyway_payment_system_list], id: nil) if payment_method.options[:payanyway_payment_system_list].present? %>
+  <input type="submit" value="Оплатить">
+<% end %>
