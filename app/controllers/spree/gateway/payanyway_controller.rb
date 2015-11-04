@@ -50,17 +50,17 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
   
   def complete_or_create_payment(order, gateway)
     return unless order && gateway && valid_signature?
-    unless (payment = order.payments.first) && payment.complete!
-      order.payments.destroy_all
+
+    payment = order.payments.where( payment_method: gateway, response_code: params['MNT_OPERATION_ID'], state:'completed' )
+    unless payment.any?
       order.payments.create! do |p|
         p.payment_method = gateway
-        p.amount = order.total
+        p.amount = params['MNT_AMOUNT'].to_f
         p.response_code = params['MNT_OPERATION_ID']
         p.state = 'completed'
       end
-#      order.payments.first.log_entries.create!(details: request.to_yaml)
+      order.update!
     end
-    order.update!
   end
 
   def complete_order
