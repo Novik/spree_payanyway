@@ -1,5 +1,6 @@
 class Spree::Gateway::PayanywayController < Spree::BaseController
   skip_before_filter :verify_authenticity_token, :only => [:result, :success, :fail]
+  skip_before_filter ::check_prelaunch_password, :only => [:result, :success, :fail]  
 
   before_filter :load_gateway, :only => [:result, :success, :fail]
 
