@@ -22,8 +22,9 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
     @order = Spree::Order.find_by_id(params['order_id'])
     if @order && @gateway && @order.complete?
       session[:order_id] = nil
-      flash[:order_completed] = true
-      redirect_to order_path(@order), :notice => Spree.t(:payment_success)
+      flash.notice = Spree.t(:order_processed_successfully)
+      flash['order_completed'] = true
+      redirect_to completion_route(@order), turbolinks: false
     else
       flash[:error] = Spree.t(:payment_fail)
       redirect_to root_url
