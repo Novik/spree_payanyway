@@ -4,7 +4,6 @@ Gem::Specification.new do |s|
   s.name        = 'spree_payanyway'
   s.version     = '3.0.1'
   s.summary     = 'Adds payment method for PayAnyWay'
-  # s.description = 'TODO: Add (optional) gem description here'
   s.required_ruby_version = '>= 2.0.0'
 
   s.authors       = ["Novik"]
