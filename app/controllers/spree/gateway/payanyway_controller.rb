@@ -54,7 +54,7 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
 
     payment = order.payments.where( payment_method: gateway, response_code: params['MNT_OPERATION_ID'], state:'completed' )
     unless payment.any?
-      order.payments.with_state('checkout').destroy_all
+      order.payments.with_state('checkout').not_store_credits.destroy_all
       order.payments.create! do |p|
         p.payment_method = gateway
         p.amount = params['MNT_AMOUNT'].to_f
