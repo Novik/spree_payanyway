@@ -50,7 +50,7 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
   end
   
   def complete_or_create_payment(order, gateway)
-    return unless order && gateway && valid_signature?
+    return false unless order && gateway && valid_signature?
 
     payment = order.payments.where( payment_method: gateway, response_code: params['MNT_OPERATION_ID'], state:'completed' )
     unless payment.any?
@@ -63,6 +63,9 @@ class Spree::Gateway::PayanywayController < Spree::BaseController
       end
       order.update!
     end
+    return true
+  rescue 
+    return false
   end
 
   def complete_order
